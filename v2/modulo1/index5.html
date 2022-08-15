@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <script src="vue.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+    <title>Document</title>
+
+    <style>
+        .verde{
+            background-color: green;
+        }
+        .azul{
+            background-color: blue;
+        }
+    </style>
+    
+</head>
+
+<body>
+    <!-- Teste live server - ola mundo -->
+    <div id="app">
+       <input type="text" @keyup="imprimirTexto('Enviando parametro',5)">
+       <button @click="mensagemAlerta($event,'texto', 10)">Botão</button>
+    </div>
+
+    <script>
+
+
+        const vm = new Vue({
+            el: '#app', //# para selecionar por id | . para selecionar por class
+            data: {
+                xyz: true
+            },
+            methods: {
+                imprimirTexto(texto, numero){
+                    console.log(texto);
+                    console.log(numero);
+                    console.log(this.xyz);
+                },
+                mensagemAlerta(event, p1, p2){
+                    // alert('mensagem de alerta');
+                    console.log(event);
+                    console.log(p1);
+                    console.log(p2);
+                }
+            },
+        }); //vm = ViewModel
+
+    </script>
+</body>
+
+</html>

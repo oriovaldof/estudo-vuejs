@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <script src="vue.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+    <title>Document</title>
+</head>
+<body>
+    <!-- Teste live server - ola mundo -->
+    <div id="app">
+        Mensagem: {{mensagem}} <br>
+        Valor Total: {{valorTotal}}<br>
+        Logado: {{logado}}<br>
+        Hobbie: {{hobbies[0]}} <br>
+        perfil: {{perfil.site}},{{perfil.cursos[0].nome}}
+    </div>
+
+    <script>
+       
+
+        const vm = new Vue({
+            el:'#app', //# para selecionar por id | . para selecionar por class
+            data:{ //Variaveis ou atributos reativos
+                mensagem: 'Primeiro template controlado pelo Vue', //string
+                valorTotal: 150.47, //numero
+                logado: false, //boleano
+                hobbies:[
+                    'Dormir',
+                    'Colecionar video games antigos',
+                    'Correr',
+                    'Trilhas'
+                ],
+                perfil:{
+                    nome: 'Oriovaldo Fialho',
+                    site: 'oriweb.com.br',
+                    idade: 41,
+                    cursos:[
+                        {
+                            nome: 'Docker', 
+                            cargaHoraria: '50 horas'
+                        },
+                        {
+                            nome: 'Vue',
+                            cargaHoraria: '40 horas'
+                        }
+                    ]
+                }
+
+            }
+        }); //vm = ViewModel
+
+    </script>
+</body>
+</html>

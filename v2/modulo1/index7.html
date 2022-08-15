@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <script src="vue.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+    <title>Document</title>
+
+    <style>
+        .verde{
+            background-color: green;
+        }
+        .branco{
+            background-color: #fff;
+        }
+        .azul{
+            background-color: blue;
+        }
+        .vermelho{
+            background-color: red;
+        }
+        .borda{
+            border: 1px solid;
+        }
+        .div-principal{
+            width: 200px;
+            height: 200px;
+        }
+        .div-comum{
+            width: 50px;
+            height: 50px;
+            display: inline-block;
+            cursor: pointer;
+        }
+    </style>
+    
+</head>
+
+<body>
+    <!-- Teste live server - ola mundo -->
+    <div id="app">
+       <a href="https://oriweb.com.br" 
+          target="_blank"
+          @click.prevent="prevenirComportamentoPadrao()">
+          Link
+        </a>
+        <br>
+        Mensagem:{{msg}}
+        <hr>
+        <button @click.once="executarUmaVez()">Botao</button>
+        <p>Cliques: {{cliques}}</p>
+        <hr>
+        <form @submit.prevent.once="prevenirUmaVez()">
+            <button type="submit">Enviar</button>
+        </form>
+        <p>Formulario: {{formulario}}</p>
+        <hr>
+        <input type="text" @keyup="capturandoTeclas($event)">
+        <p>Teclas:{{teclas}}</p>
+    </div>
+
+    <script>
+
+
+        const vm = new Vue({
+            el: '#app', //# para selecionar por id | . para selecionar por class
+            data: {
+                msg:'',
+                cliques:0,
+                formulario:'',
+                teclas:''
+            },
+            methods: { 
+                prevenirComportamentoPadrao(){
+                    this.msg = 'Comportamento padrao ativado';
+                },
+                executarUmaVez(){
+                    this.cliques++;
+                },
+                prevenirUmaVez(){
+                    this.formulario = 'Prevenindo o comportamento Padrão';
+                },
+                capturandoTeclas(event){
+                    this.teclas += event.key;
+                }
+
+            },
+        }); //vm = ViewModel
+
+    </script>
+</body>
+
+</html>

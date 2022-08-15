@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <script src="vue.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+    <title>Document</title>
+
+    <style>
+
+    </style>
+
+</head>
+
+<body>
+    <!-- Teste live server - ola mundo -->
+    <div id="app">
+       <h4>Adicionar Pacientes</h4>
+       <span>Nome:</span> <input type="text" id="inputNome"><br>
+       <span>Idade:</span> <input type="text" id="inputIdade"><br>
+       <!-- <span>Plano:</span> <input type="text" id="inputPlano"><br> -->
+       <span>Plano:</span> <select id="inputPlano">
+        <option value="Basico">Basico</option>
+        <option value="Plata">Plata</option>
+        <option value="Ouro">Ouro</option>
+       </select><br>
+
+       <button @click="adicionarPaciente()">Adicionar</button>
+       <hr>
+       <h4>Último Paciente Cadastrado</h4>
+       <p v-if=" pacientes.length > 0" >
+            {{ultimoPaciente}}
+       </p>
+       <hr>
+       <h4>Pacientes do Plano Ouro</h4>
+       <p v-for="p in pacientesPlanoOuro">{{p.nome}}</p>
+       <hr>
+       <h4>Pacientes Cadastrados</h4>
+       <p v-for="p in pacientes">{{p.nome}}</p>
+    </div>
+
+
+    <script>
+
+
+        const vm = new Vue({
+            el: '#app', //# para selecionar por id | . para selecionar por class
+            data: {
+                pacientes:[]
+            },
+            methods: {
+                adicionarPaciente(){
+                    this.pacientes.push({
+                                          nome:inputNome.value,
+                                          idade:inputIdade.value,
+                                          plano:inputPlano.value,
+                                        });
+                                        console.log(this.pacientes);
+                }
+            },
+            computed:{
+                ultimoPaciente(){
+                    let key = this.pacientes.length - 1;
+                    let txt = '';
+
+                    txt = `Paciente ${this.pacientes[key].nome},
+                    Idade ${this.pacientes[key].idade},
+                    Plano ${this.pacientes[key].plano}
+                    `;
+
+                    return txt;
+                   
+                },
+                pacientesPlanoOuro(){
+                    return this.pacientes.filter((item)=> item.plano == 'Ouro')
+                }
+            }
+        }); //vm = ViewModel
+
+    </script>
+</body>
+
+</html>
