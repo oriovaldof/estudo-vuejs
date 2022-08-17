@@ -19,11 +19,12 @@
 <body>
     <!-- Teste live server - ola mundo -->
     <div id="app">
-        {{paciente}}
+        <span>Paciente:</span><input type="text" v-model="paciente">
         <br>
-        <!--v-model-->
-       <!-- <input type="text" v-bind:value="paciente" v-on:keyup="setPaciente($event)"> -->
-       <input type="text" v-model="paciente">
+        <ul>
+            <li v-for="p in lista">{{p.nome}}, {{p.idade}}</li>
+        </ul>
+
     </div>
 
 
@@ -33,14 +34,30 @@
         const vm = new Vue({
             el: '#app', //# para selecionar por id | . para selecionar por class
             data: {
-                paciente: 'João da Silva'
+                paciente:'',
+                pacientes:[
+                    {nome:'Jorge Sant ana', idade: 32},
+                    {nome:'João Santos', idade:45},
+                    {nome:'José Augusto', idade:18},
+                    {nome:'Junior Silva', idade:20},
+                    {nome:'Julio Nogueira', idade: 50}
+                ],
+                lista:[]
             },
             methods: {
-                setPaciente(event){
-                    this.paciente = event.target.value;
-                }
             },
-            computed:{}
+            computed:{},
+            watch:{ 
+                //os metdos observadores precisam ter o mesmo nome do atributos e por padrao eles recebem o valorNovo e o valorAntigo
+                // paciente(valorNovo, valorAntigo){
+                //     console.log('Valor Novo:', valorNovo, ' Valor Antigo: ', valorAntigo);
+                // }
+                paciente(valorNovo){
+                    // console.log(valorNovo);
+                    // console.log(this.pacientes.filter(p => p.nome.match(valorNovo)));
+                    this.lista = this.pacientes.filter(p => p.nome.match(valorNovo));
+                }
+            }
         }); //vm = ViewModel
 
     </script>

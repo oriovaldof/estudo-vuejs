@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <script src="vue.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+    <title>V-model</title>
+
+    <style>
+
+    </style>
+
+</head>
+
+<body>
+    <!-- Teste live server - ola mundo -->
+    <div id="app">
+        {{paciente}}
+        <br>
+        <!--v-model-->
+       <!-- <input type="text" v-bind:value="paciente" v-on:keyup="setPaciente($event)"> -->
+       <input type="text" v-model="paciente">
+       <hr>
+       <input type="radio"value="f" v-model="sexo">Feminino
+       <input type="radio"value="m" v-model="sexo">Masculino
+       <br>
+       {{sexo}}
+       <hr>
+       <select v-model="plano">
+        <option value="" disabled>Selecione</option>
+        <option value="1">Basico 1</option>
+        <option value="2">Basico 2</option>
+        <option value="3">Master</option>
+       </select>
+       <br>
+       {{plano}}
+       <hr>
+       <input type="checkbox" value="100" v-model="doencas">Asma
+       <input type="checkbox" value="101" v-model="doencas">Diabetes tipo 1
+       <input type="checkbox" value="102" v-model="doencas">Rinite
+       <br>
+       {{doencas}}
+       <hr>
+       <textarea v-model="diagnostico" cols="30" rows="10"></textarea>
+       <br>
+       {{diagnostico}}
+       {{contado}}
+
+    </div>
+
+
+    <script>
+
+
+        const vm = new Vue({
+            el: '#app', //# para selecionar por id | . para selecionar por class
+            data: {
+                paciente: 'João da Silva',
+                sexo:'',
+                plano:'',
+                doencas:[],
+                diagnostico:''
+            },
+            methods: {
+                setPaciente(event){
+                    this.paciente = event.target.value;
+                }
+            },
+            computed:{
+                contado(){
+                    return this.doencas.length;
+                }
+            }
+        }); //vm = ViewModel
+
+    </script>
+</body>
+
+</html>
