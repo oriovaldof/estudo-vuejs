@@ -11,7 +11,15 @@
     <title>Document</title>
 
     <style>
-
+        .vermelho{
+            background-color: red;
+        }
+        .texto-branco{
+            color: white;
+        }
+        .destaque{
+            font-weight: bold;
+        }
 
     </style>
 
@@ -21,12 +29,15 @@
     <!-- Teste live server - ola mundo -->
     <div id="app">
         <h1>Manipulando CSS com VueJS</h1>
-        <div :style="estilo">
-            Definindo styles com objetos
-        </div>
-
-        <button @click="estilo.background = 'green'">
-            Mudar para Verde
+        <p :class="[estilo2,{vermelho:true, destaque:eDestaque}]">
+            Definindo classes com arrays
+        </p>
+        
+        <button @click="estilo2 = ''">
+            Remover o estilo 2
+        </button>
+        <button @click="eDestaque = !eDestaque">
+           Mudar o Destaque
         </button>
 
     </div>
@@ -38,18 +49,14 @@
         const vm = new Vue({
             el: '#app', //# para selecionar por id | . para selecionar por class
             data: {
-                estilo: {
-                    background: 'blue',
-                    width: 250 + 'px',
-                    height: 150 + 'px',
-                    padding: 10 + 'px',
-                    fontSize: 25 + 'px'
-                }
-
+                estilo1:'vermelho',
+                estilo2:'texto-branco',
+                estilo3:'destaque',
+                eDestaque:false
             },
-            methods: {},
-            computed: {},
-            watch: {}
+            methods: { },
+            computed:{},
+            watch:{ }
         }); //vm = ViewModel
 
     </script>

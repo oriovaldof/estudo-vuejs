@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <script src="vue.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+    <title>Document</title>
+
+    <style>
+        .vermelho{
+            background-color: red;
+        }
+        .texto-branco{
+            color: white;
+        }
+        .destaque{
+            font-weight: bold;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <!-- Teste live server - ola mundo -->
+    <div id="app">
+        <h1>Manipulando CSS com VueJS</h1>
+        <p :class="{
+            vermelho:eVermelho, 
+            'texto-branco':eTextoBranco, 
+            destaque:eDestaque
+        }">
+            Definindo classes com objetos
+        </p>
+        <button @click="eVermelho = !eVermelho">
+            <span v-text="eVermelho ? 'Remover Background':'Aplicar background'"></span>
+        </button>
+        <button @click="eTextoBranco = !eTextoBranco">
+            <span v-text="eTextoBranco ? 'Remover Texto Branco':'Aplicar Texto Branco'"></span>
+        </button>
+        <button @click="eDestaque = !eDestaque">
+            <span v-text="eDestaque ? 'Remover Destaque':'Aplicar Destaque'"></span>
+        </button>
+
+    </div>
+
+
+    <script>
+
+
+        const vm = new Vue({
+            el: '#app', //# para selecionar por id | . para selecionar por class
+            data: {
+                eVermelho: false,
+                eTextoBranco:false,
+                eDestaque:false
+            },
+            methods: { },
+            computed:{},
+            watch:{ }
+        }); //vm = ViewModel
+
+    </script>
+</body>
+
+</html>
